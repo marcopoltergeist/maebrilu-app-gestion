@@ -1,0 +1,122 @@
+.react-calendar {
+    border: none;
+    font-family: 'Outfit' !important;
+    font-weight: bold !important;
+}
+
+.react-calendar * {
+    text-decoration: none;
+}
+
+.react-calendar__navigation button {
+    font-family: 'Outfit' !important;
+    font-weight: bold !important;
+}
+
+
+ .react-calendar__navigation__next2-button,
+ .react-calendar__navigation__prev2-button {
+display: none !important;
+}
+
+.actions {
+  display: flex;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin-top: 5vh;
+  -ms-overflow-style: none;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-bottom: 7vh;
+}
+  
+  .close-date-button, .book-date-button {
+    font-family: "Outfit", Arial, sans-serif !important;
+    font-weight: 600;
+    background-color: var(--primary-dark-color) !important;
+    color: var(--white) !important;
+    border: none;
+    padding: 20px 35px 20px 35px;
+    border-radius: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .close-date-button > img,
+   .book-date-button > img {
+    margin-right: 10px;
+   }
+  
+  .close-date-button {
+    background-color: var(--white) !important;
+    color: var(--gray) !important;
+  }
+  
+  .disabled-date {
+    background-color: var(--gray) !important;
+    color: var(--white) !important;
+    border-radius: 15px;
+  }
+  
+  .booked-date {
+    background-color: var(--primary-dark-color) !important;
+    color: var(--white) !important;
+    border-radius: 15px;
+  }
+  
+  .booked-date:hover, .disabled-date:hover {
+    cursor: not-allowed;
+  }
+  
+  .chambre-info {
+    display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .calendar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-direction: column;
+  }
+  
+  .calendar-container .close-date-button,
+  .calendar-container .book-date-button {
+    margin: 5px;
+    padding: 20px 30px;
+    border: none;
+    background-color: var(--primary-dark-color) !important;
+    color: var(--white) !important;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .calendar-container .close-date-button {
+    background-color: var(--gray) !important;
+  }
+  
+  .div-calendar-container {
+    background-color: var(--white) !important;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    transition: width 0.5s ease, height 0.5s ease; /* Transition sur la largeur et la hauteur */
+  }
+
+
+  .react-calendar__tile--active,
+  .react-calendar__tile--now {
+    border-radius: 15px !important;
+  }
+  
+    /****/

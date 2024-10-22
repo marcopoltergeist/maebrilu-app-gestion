@@ -1,0 +1,39 @@
+@import url('@fontsource/outfit');
+@import url('@fontsource/outfit/400.css');
+
+@import url('https://fonts.googleapis.com/css2?family=NomDeLaPolice:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #fff4f4;
+  --primary-dark-color: #f07677;
+  --secondary-color: #333;
+  --green: #76f07b;
+  --black: #1e1e1e;
+  --white: #fff;
+  --gray: gray;
+  --text-color: #000;      
+  --border-radius: 5px;     
+  --font-size: 16px;
+  --width-container: 75vw;       
+}
+
+body {
+  height: 100%;
+  background-color: var(--primary-color);
+  margin: 0;
+  font-family: "Outfit", Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: 1fr;
+}

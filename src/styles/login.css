@@ -1,0 +1,70 @@
+
+
+/* Style pour le container principal */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    height: 100vh;
+    background-color: var(--primary-color); /* Couleur de fond rose clair */
+  }
+  
+  /* Style pour le formulaire de connexion */
+  .login-form {
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: var(--width-container);
+    margin-top: 15vh;
+  }
+  
+  /* Titre */
+  .login-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10vh;
+    color: var(--black);
+  }
+  
+  /* Inputs */
+  .login-input {
+    width: 100%;
+    padding: 25px 15px 25px 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+  }
+  
+  /* Bouton de connexion */
+  .login-button {
+    width: 100%;
+    padding: 25px 15px 25px 15px;
+    background-color: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 15px;
+  }
+  
+  .login-button:hover {
+    background-color: var(--gray);
+  }
+  
+  /* Icône du flamant rose */
+  .login-icon {
+    position: absolute;
+    bottom: -35%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .flamingo {
+    height: 120px; /* Ajustez selon la taille de l'image */
+
+  }
+  
