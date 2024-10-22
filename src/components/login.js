@@ -1,50 +1,98 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import logo from '../assets/picto/picto-maebrilu.png';
-import '../styles/login.css'
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import logo from '../assets/picto/picto-maebrilu.png'; 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const navigation = useNavigation();
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     // Logique pour la soumission des données de connexion
     console.log("Email:", email, "Password:", password);
-
-    navigate('/home');
-
+    navigation.navigate('Home'); // Navigation vers l'écran Home
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
-        <h2 className="login-title">Connection</h2>
-        <input
-          type="email"
+    <View style={styles.loginContainer}>
+      <View style={styles.loginForm}>
+        <Text style={styles.loginTitle}>Connection</Text>
+        <TextInput
+          style={styles.loginInput}
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChangeText={setEmail}
           placeholder="maebrily@gmail.com"
-          className="login-input"
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
-        <input
-          type="password"
+        <TextInput
+          style={styles.loginInput}
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChangeText={setPassword}
           placeholder="••••••••"
-          className="login-input"
+          secureTextEntry={true}
         />
-        <button type="submit" className="login-button">
-          Connexion
-        </button>
-        <div className="login-icon">
-          <img src={logo} alt="logo" className="flamingo" />
-        </div>
-      </form>
-    </div>
+        <TouchableOpacity onPress={handleSubmit} style={styles.loginButton}>
+          <Text style={styles.buttonText}>Connexion</Text>
+        </TouchableOpacity>
+        <View style={styles.loginIcon}>
+          <Image source={logo} style={styles.flamingo} />
+        </View>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  loginContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F7CAC9', // Couleur de fond rose clair
+  },
+  loginForm: {
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    width: '80%',
+  },
+  loginTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 30,
+    color: '#000',
+  },
+  loginInput: {
+    width: '100%',
+    padding: 15,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    fontSize: 16,
+  },
+  loginButton: {
+    width: '100%',
+    padding: 15,
+    backgroundColor: '#000',
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 15,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  loginIcon: {
+    marginTop: 20,
+  },
+  flamingo: {
+    height: 120,
+    width: 120, 
+    resizeMode: 'contain',
+  },
+});
 
 export default Login;

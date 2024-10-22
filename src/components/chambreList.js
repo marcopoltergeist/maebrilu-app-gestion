@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import CalendarMaebrilu from './calendarMaebrilu';
 import bookLogo from '../assets/picto/room-key-white.png';
 import closeLogo from '../assets/picto/close.png';
-import 'react-calendar/dist/Calendar.css';
-import '../styles/home.css';
 
 const ChambreList = () => {
   const chambres = [
-    'Chambre d\'hôte N°1',
-    'Chambre d\'hôte N°2',
-    'Chambre d\'hôte N°3',
-    'Chambre d\'hôte N°4',
-    'La suite',
-    'Gite 2/4 Personnes',
-    'Gite 2/6 Personnes',
-    'Tente lodge 1/2pers',
+    "Chambre d'hôte N°1",
+    "Chambre d'hôte N°2",
+    "Chambre d'hôte N°3",
+    "Chambre d'hôte N°4",
+    "La suite",
+    "Gite 2/4 Personnes",
+    "Gite 2/6 Personnes",
+    "Tente lodge 1/2pers",
   ];
 
   const [calendars, setCalendars] = useState({
@@ -28,11 +27,9 @@ const ChambreList = () => {
     chambre8: { disabledDates: [], bookedDates: [] },
   });
 
-  // État pour stocker la date sélectionnée
   const [selectedDate, setSelectedDate] = useState(null);
-  // État pour gérer la visibilité des boutons d'action
   const [showActions, setShowActions] = useState(false);
-  const [currentChambre, setCurrentChambre] = useState(null); // Chambre actuelle pour réservation
+  const [currentChambre, setCurrentChambre] = useState(null);
 
   const updateDates = (chambre, type, date) => {
     setCalendars((prevCalendars) => {
@@ -50,7 +47,6 @@ const ChambreList = () => {
       }
       return { ...prevCalendars, [chambre]: updatedChambre };
     });
-    // Cacher les boutons d'action après réservation ou blocage
     setShowActions(false);
   };
 
@@ -78,45 +74,103 @@ const ChambreList = () => {
   };
 
   return (
-    <div>
-      <div className="chambres-list">
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Sélectionnez une chambre</Text>
+      </View>
+      <ScrollView style={styles.chambresSelection}>
         {chambres.map((chambre, index) => {
           const chambreKey = `chambre${index + 1}`;
           return (
-            <div key={chambreKey} className="chambre-section">
-              <h3>{chambre}</h3>
+            <View key={chambreKey} style={styles.chambreSection}>
+              <Text style={styles.chambreTitle}>{chambre}</Text>
               <CalendarMaebrilu
                 disabledDates={calendars[chambreKey].disabledDates}
                 bookedDates={calendars[chambreKey].bookedDates}
                 onDateSelect={(date) => handleDateChange(date)}
-                onShowActions={() => handleShowActions(chambreKey)} // Appel à la fonction pour afficher les boutons
+                onShowActions={() => handleShowActions(chambreKey)}
               />
-            </div>
+            </View>
           );
         })}
-      </div>
+      </ScrollView>
 
       {showActions && (
-        <div className="actions">
-          <button onClick={handleBlockDate} className="close-date-button" aria-label="Bloquer la date">
-            <img 
-              src={closeLogo} 
-              alt="Icône de bloquer" 
-              style={{ marginRight: '15px', width: '45px' }} 
-            />
-          </button>
+        <View style={styles.actions}>
+          <TouchableOpacity onPress={handleBlockDate} style={styles.closeDateButton} aria-label="Bloquer la date">
+            <Image source={closeLogo} style={styles.icon} />
+          </TouchableOpacity>
 
-          <button onClick={handleBookDate} className="book-date-button" aria-label="Réserver la date">
-            <img 
-              src={bookLogo} 
-              alt="Icône de réservation" 
-              style={{ marginRight: '15px', width: '45px' }} 
-            />
-          </button>
-        </div>
+          <TouchableOpacity onPress={handleBookDate} style={styles.bookDateButton} aria-label="Réserver la date">
+            <Image source={bookLogo} style={styles.icon} />
+          </TouchableOpacity>
+        </View>
       )}
-    </div>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  header: {
+    textAlign: 'center',
+    backgroundColor: '#fff', // Assurez-vous d'utiliser la couleur appropriée
+    width: '100%',
+    paddingTop: '6%',
+    paddingBottom: '4%',
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  chambresSelection: {
+    width: '75%',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+    marginTop: '5%',
+    maxHeight: 342,
+    overflowY: 'scroll', // Géré par ScrollView
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    paddingBottom: '7%',
+  },
+  chambreSection: {
+    marginBottom: 10,
+  },
+  chambreTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
+  },
+  closeDateButton: {
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 3,
+  },
+  bookDateButton: {
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 3,
+  },
+  icon: {
+    width: 45,
+    height: 45,
+  },
+});
 
 export default ChambreList;

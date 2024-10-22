@@ -1,17 +1,20 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/login';
-import Home from './components/home';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from './components/Login';
+import Home from './components/Home';
+
+const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </Router>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
 export default App;
